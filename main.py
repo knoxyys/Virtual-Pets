@@ -43,7 +43,6 @@ class Pet():
 
 my_pet = Pet('six')
 
-
 ####---Task 5----####
 #make it so that the feed, sleep, play and wait will check if the pet
 #is dead before you upadate those properties.

@@ -9,25 +9,40 @@ class Pet():
         self.sleepiness = 3
         self.dead = False
     
+    def __str__(self):
+        return f"Pet Name: {self.name}, Age: {self.age}, Hunger: {self.hunger}, Boredom: {self.boredom}, Sleepiness: {self.sleepiness}, Dead: {self.dead}"
+    
     def feed(self):
+        if self.dead:
+            print(f"{self.name} is dead and cannot be fed.")
+            return
         self.hunger -= 3
         if self.hunger < 0:
             self.hunger = 0
         print(f"{self.name} has been fed. Hunger level: {self.hunger}")
     
     def play(self):
+        if self.dead:
+            print(f"{self.name} is dead and cannot play.")
+            return
         self.boredom -= 3
         if self.boredom < 0:
             self.boredom = 0
         print(f"{self.name} has played. Boredom level: {self.boredom}")
     
     def sleep(self):
+        if self.dead:
+            print(f"{self.name} is dead and cannot sleep.")
+            return
         self.sleepiness -= 5
         if self.sleepiness < 0:
             self.sleepiness = 0
         print(f"{self.name} has slept. Sleepiness level: {self.sleepiness}")
     
     def wait(self):
+        if self.dead:
+            print(f"{self.name} is dead and cannot wait.")
+            return
         self.age += 1
         self.hunger += 1
         self.boredom += 1
@@ -41,15 +56,14 @@ class Pet():
         else:
             print(f"{self.name} is alive.")
 
-my_pet = Pet('six')
+my_pet = Pet(input("What is your pet's name? "))
+print(my_pet)
 
-####---Task 5----####
-#make it so that the feed, sleep, play and wait will check if the pet
-#is dead before you upadate those properties.
+action = input("What would you like to do with your pet? ").lower()
+while action != '':
+    print("-----------------------------------------------------")
+    print(my_pet)
+    print("-----------------------------------------------------")
+    action = input("What do you want to do with your pet? ")
 
-####---Task 6----####
-#Use Python's predefined __str__ method to produce a string output
-#for your pet. refer to page 4 of the tutorial if you don't know
-#what I'm talking about.
-
-#Go to page 9 of the tutorial to learn how to make the mainline (https://classroom.google.com/w/NzE2NTQ0NzA2MTYx/t/all)
+    # go off page 9 from here (https://classroom.google.com/w/NzE2NTQ0NzA2MTYx/t/all)

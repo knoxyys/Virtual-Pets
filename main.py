@@ -7,13 +7,13 @@ class Pet():
         self.hunger = 5
         self.boredom = 3
         self.sleepiness = 3
-        self.dead = False
+        self.__dead = False
     
     def __str__(self):
-        return f"Pet Name: {self.name}, Age: {self.age}, Hunger: {self.hunger}, Boredom: {self.boredom}, Sleepiness: {self.sleepiness}, Dead: {self.dead}"
+        return f"Pet Name: {self.name}, Age: {self.age}, Hunger: {self.hunger}, Boredom: {self.boredom}, Sleepiness: {self.sleepiness}, Dead: {self._Pet__dead}"
     
     def feed(self):
-        if self.dead:
+        if self._Pet__dead:
             print(f"{self.name} is dead and cannot be fed.")
             return
         self.hunger -= 3
@@ -22,7 +22,7 @@ class Pet():
         print(f"{self.name} has been fed. Hunger level: {self.hunger}")
     
     def play(self):
-        if self.dead:
+        if self._Pet__dead:
             print(f"{self.name} is dead and cannot play.")
             return
         self.boredom -= 3
@@ -31,7 +31,7 @@ class Pet():
         print(f"{self.name} has played. Boredom level: {self.boredom}")
     
     def sleep(self):
-        if self.dead:
+        if self._Pet__dead:
             print(f"{self.name} is dead and cannot sleep.")
             return
         self.sleepiness -= 5
@@ -40,30 +40,46 @@ class Pet():
         print(f"{self.name} has slept. Sleepiness level: {self.sleepiness}")
     
     def wait(self):
-        if self.dead:
+        if self._Pet__dead:
             print(f"{self.name} is dead and cannot wait.")
             return
         self.age += 1
         self.hunger += 1
         self.boredom += 1
         self.sleepiness += 1
-        print(f"{self.name} has waited. Age: {self.age}, Hunger: {self.hunger}, Boredom: {self.boredom}, Sleepiness: {self.sleepiness}")
+        print(f"{self.name} has waited.")
 
     def check_death(self):
-        if (self.boredom >= 10 or self.sleepiness >= 10 or self.hunger >= 10) and (self.age >= random.randint(15, 20)):
-            self.dead = True
-            print(f"{self.name} has died.")
+        if (self.boredom >= 10 or self.sleepiness >= 10 or self.hunger >= 10) or (self.age >= random.randint(15, 20)):
+            self._Pet__dead = True
+            return True
         else:
             print(f"{self.name} is alive.")
 
 my_pet = Pet(input("What is your pet's name? "))
-print(my_pet)
 
-action = input("What would you like to do with your pet? ").lower()
+action = ' '
 while action != '':
-    print("-----------------------------------------------------")
-    print(my_pet)
-    print("-----------------------------------------------------")
     action = input("What do you want to do with your pet? ")
+    if action == "kill":
+        my_pet.dead = True
+    if action == "feed":
+        my_pet.feed()
+    if action == "play":
+        my_pet.play()
+    if action == "sleep":
+        my_pet.sleep()
+    if action == "wait":
+        my_pet.wait()
+    if my_pet.check_death() == True:
+        print(f"❗❗❗❗❗❗❗❗❗❗❗{my_pet.name} has died.❗❗❗❗❗❗❗❗❗❗❗")
+        print("-----------------------------------------------------------------------------------")
+        print(my_pet)
+        print("-----------------------------------------------------------------------------------")
+        break
+    print("-----------------------------------------------------------------------------------")
+    print(my_pet)
+    print("-----------------------------------------------------------------------------------")
+
 
     # go off page 9 from here (https://classroom.google.com/w/NzE2NTQ0NzA2MTYx/t/all)

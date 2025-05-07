@@ -71,6 +71,8 @@ while action != '':
         my_pet.sleep()
     if action == "wait":
         my_pet.wait()
+    else:
+        print("You can only choose to feed, play, sleep or wait. ")
     if my_pet.check_death() == True:
         print(f"❗❗❗❗❗❗❗❗❗❗❗{my_pet.name} has died.❗❗❗❗❗❗❗❗❗❗❗")
         print("-----------------------------------------------------------------------------------")
